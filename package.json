@@ -1,0 +1,14 @@
+{
+  "name": "udmey-course",
+  "version": "1.0.0",
+  "description": "MERN Shoping Cart App",
+  "main": "server.js",
+  "scripts": {
+    "start": "node backend/server"
+  },
+  "author": "Amjad Habbabeh",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
