@@ -10,9 +10,6 @@ const HomeScreen = () => {
       setProducts(data);
     };
     fetchProducts();
-    // return () => {
-    //   cleanup
-    // }
   }, []);
 
   return (
