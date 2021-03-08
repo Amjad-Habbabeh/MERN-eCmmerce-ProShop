@@ -66,7 +66,7 @@ const orderSchema = mongoose.Schema(
       default: 0.0,
     },
 
-    ShippingPrice: {
+    shippingPrice: {
       type: Number,
       required: true,
       default: 0.0,
