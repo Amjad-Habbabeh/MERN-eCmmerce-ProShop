@@ -16,7 +16,7 @@ import { ORDER_PAY_RESET } from '../constants/orderConstants';
 const OrderScreen = ({ match, history }) => {
   const orderId = match.params.id;
 
-  // const [sdkReady, setSdkReady] = useState(false);
+  const [sdkReady, setSdkReady] = useState(false);
 
   const dispatch = useDispatch();
 
