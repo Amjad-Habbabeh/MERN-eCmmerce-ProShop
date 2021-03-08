@@ -18,11 +18,10 @@ const HomeScreen = ({ match }) => {
   const dispatch = useDispatch();
 
   const productList = useSelector((state) => state.productList);
-<<<<<<< HEAD
+
   const { loading, error, products } = productList;
-=======
+
   const { loading, error, products, page, pages } = productList;
->>>>>>> fa8dcf45c3e7cd88f6908820109e8e0ef52574c7
 
   useEffect(() => {
     dispatch(listProducts(keyword, pageNumber));
