@@ -19,17 +19,23 @@ import ProductListScreen from './screens/ProductListScreen'
 import ProductEditScreen from './screens/ProductEditScreen'
 import OrderListScreen from './screens/OrderListScreen'
 import ReactGA from 'react-ga'
+import axios from 'axios'
 
 function usePageViews() {
   let location = useLocation()
 
   useEffect(() => {
-    if (!window.GA_INITIALIZED) {
-      ReactGA.initialize(process.env.TRACK_ID)
-      window.GA_INITIALIZED = true
+    const getAnalytic = async () => {
+      const { data: TRACK_ID } = await axios.get('/api/config/googleAnalytic')
+
+      if (!window.GA_INITIALIZED) {
+        ReactGA.initialize(TRACK_ID)
+        window.GA_INITIALIZED = true
+      }
+      ReactGA.set({ page: location.pathname })
+      ReactGA.pageview(location.pathname)
     }
-    ReactGA.set({ page: location.pathname })
-    ReactGA.pageview(location.pathname)
+    getAnalytic()
   }, [location])
 }
 
