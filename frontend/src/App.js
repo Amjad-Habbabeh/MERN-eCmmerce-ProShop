@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { BrowserRouter as Router, Route, useLocation } from 'react-router-dom'
+import { Route, useLocation } from 'react-router-dom'
 import { Container } from 'react-bootstrap'
 import Header from './components/Header'
 import Footer from './components/Footer'
@@ -18,7 +18,7 @@ import UserEditScreen from './screens/UserEditScreen'
 import ProductListScreen from './screens/ProductListScreen'
 import ProductEditScreen from './screens/ProductEditScreen'
 import OrderListScreen from './screens/OrderListScreen'
-import ReactGa from 'react-ga'
+import ReactGA from 'react-ga'
 
 function usePageViews() {
   let location = useLocation()
@@ -29,14 +29,14 @@ function usePageViews() {
       window.GA_INITIALIZED = true
     }
     ReactGA.set({ page: location.pathname })
-    ReactGa.pageview(location.pathname)
+    ReactGA.pageview(location.pathname)
   }, [location])
 }
 
 function App() {
   usePageViews()
   return (
-    <Router>
+    <main>
       <Header />
       <main className='py-3'>
         <Container>
@@ -75,7 +75,7 @@ function App() {
         </Container>
       </main>
       <Footer />
-    </Router>
+    </main>
   )
 }
 
