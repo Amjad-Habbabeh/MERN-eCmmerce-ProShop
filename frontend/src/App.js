@@ -44,24 +44,6 @@ function usePageViews() {
 }
 
 function App() {
-  function usePageViews() {
-    let location = useLocation()
-    const dispatch = useDispatch()
-    useEffect(() => {
-      const getAnalytic = async () => {
-        const { data: TRACK_ID } = await axios.get('/api/config/googleAnalytic')
-
-        if (!window.GA_INITIALIZED) {
-          ReactGA.initialize(TRACK_ID)
-          window.GA_INITIALIZED = true
-        }
-        ReactGA.set({ page: location.pathname })
-        dispatch(createRoutesHistory(location.pathname))
-        ReactGA.pageview(location.pathname)
-      }
-      getAnalytic()
-    }, [location])
-  }
   usePageViews()
   return (
     <main>
