@@ -141,16 +141,11 @@ export const userHistoryRoutesReducer = (
   action
 ) => {
   switch (action.type) {
-    case USER_HISTORY_REQUEST:
-      return { loading: true }
-
     case USER_HISTORY_SUCCESS:
       return {
-        loading: false,
         routesHistory: action.payload
       }
-    case USER_HISTORY_FAIL:
-      return { loading: false, error: action.payload }
+
     case USER_HISTORY_RESET:
       return (state = { routesHistory: [] })
     default:

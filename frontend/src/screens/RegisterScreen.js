@@ -19,11 +19,7 @@ const RegisterScreen = ({ location, history }) => {
   const dispatch = useDispatch()
 
   const userHistoryRoutes = useSelector((state) => state.userHistoryRoutes)
-  const {
-    loading: historyLoading,
-    error: historyError,
-    routesHistory
-  } = userHistoryRoutes
+  const { routesHistory } = userHistoryRoutes
   const signupOriginPath = routesHistory[routesHistory.length - 3]
 
   const userRegister = useSelector((state) => state.userRegister)
