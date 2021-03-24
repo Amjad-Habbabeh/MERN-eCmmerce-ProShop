@@ -1,38 +1,36 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import Message from '../components/Message';
-import { Link } from 'react-router-dom';
-import { addToCart, removeFromCart } from '../actions/cartActions';
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import Message from '../components/Message'
+import { Link } from 'react-router-dom'
+import { addToCart, removeFromCart } from '../actions/cartActions'
 
-import {
-  Image,
-  Card,
-  Button,
-  ListGroup,
-  Row,
-  Col,
-  Form,
-} from 'react-bootstrap';
+import { Image, Card, Button, ListGroup, Row, Col, Form } from 'react-bootstrap'
+import useEventGaTracker from '../hooks/useEventGaTracker'
 
 const CartScreen = ({ match, location, history }) => {
-  const productId = match.params.id;
+  const productId = match.params.id
 
-  const qty = location.search ? Number(location.search.split('=')[1]) : 1;
-  const dispatch = useDispatch();
-  const cart = useSelector((state) => state.cart);
-  const { cartItems } = cart;
+  const qty = location.search ? Number(location.search.split('=')[1]) : 1
+  const dispatch = useDispatch()
+  const cart = useSelector((state) => state.cart)
+  const { cartItems } = cart
+  const EventGaTracker = useEventGaTracker('addToCart')
+  const userHistoryRoutes = useSelector((state) => state.userHistoryRoutes)
+  const { routesHistory } = userHistoryRoutes
+  const signupOriginPath = routesHistory[routesHistory.length - 3]
 
   useEffect(() => {
     if (productId) {
-      dispatch(addToCart(productId, qty));
+      dispatch(addToCart(productId, qty))
+      EventGaTracker('successfull addToCart', signupOriginPath)
     }
-  }, [dispatch, productId, qty]);
+  }, [dispatch, productId, qty])
   const removeFromCartHandler = (id) => {
-    dispatch(removeFromCart(id));
-  };
+    dispatch(removeFromCart(id))
+  }
   const checkOutHandler = () => {
-    history.push('/login?redirect=shipping');
-  };
+    history.push('/login?redirect=shipping')
+  }
   return (
     <Row>
       <Col md={8}>
@@ -111,7 +109,7 @@ const CartScreen = ({ match, location, history }) => {
         </Card>
       </Col>
     </Row>
-  );
-};
+  )
+}
 
-export default CartScreen;
+export default CartScreen
